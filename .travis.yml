@@ -15,4 +15,9 @@ after_success:
   - docker build -t marcelotozzi/multi-nginx ./nginx
   - docker build -t marcelotozzi/multi-server ./server
   - docker build -t marcelotozzi/multi-worker ./worker
-  
+  # 
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin    
+  - docker push marcelotozzi/multi-client
+  - docker push marcelotozzi/multi-nginx  
+  - docker push marcelotozzi/multi-server  
+  - docker push marcelotozzi/multi-worker
