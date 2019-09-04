@@ -5,7 +5,7 @@ services:
 
 
 before_install:
-  - docker build -t marcelotozzi/muti-cont -f ./client/Dockerfile.dev .
+  - docker build -t marcelotozzi/multi-cont -f ./client/Dockerfile.dev .
 
 script:
   - docker run -e CI=true marcelotozzi/multi-cont npm test
