@@ -1,0 +1,18 @@
+language: generic
+sudo: required
+services:
+  - docker
+
+
+before_install:
+  - docker build -t marcelotozzi/muti-cont -f ./client/Dockerfile.dev .
+
+script:
+  - docker run -e CI=true marcelotozzi/multi-cont npm test
+
+after_success:
+  - docker build -t marcelotozzi/multi-client ./client
+  - docker build -t marcelotozzi/multi-nginx ./nginx
+  - docker build -t marcelotozzi/multi-server ./server
+  - docker build -t marcelotozzi/multi-worker ./worker
+  
